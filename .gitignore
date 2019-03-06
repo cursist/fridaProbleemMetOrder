@@ -24,3 +24,23 @@ HELP.md
 /nbdist/
 /.nb-gradle/
 /build/
+
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+.mvn/wrapper/MavenWrapperDownloader.java
+mvnw
+mvnw.cmd
+
+### SCSS ###
+\src\main\resources\static\css\*.css
+\src\main\resources\static\css\*.css.map

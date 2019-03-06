@@ -1,0 +1,17 @@
+body {
+  width: 50em;
+  margin: 1em auto;
+}
+
+h1 {
+  font-family: "Modern No. 20", cursive;
+  letter-spacing: 1em;
+  color: cornflowerblue;
+  background-color: yellow;
+  padding: 1em;
+  border: 3px solid black;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/*# sourceMappingURL=stijl.css.map */
