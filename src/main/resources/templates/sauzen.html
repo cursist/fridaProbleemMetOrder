@@ -8,10 +8,12 @@
     <h2>Sauzen</h2>
     <ul th:each="saus:${lijstVanSauzen}" th:object="${saus}">
         <li>
-            <p th:text="*{naam}"></p>
-            <ul th:each="ingredient:*{ingredienten}">
-                <li th:text="${ingredient}"></li>
-            </ul>
+            <a th:href="@{/sauzen/{nummer}(nummer=*{nummer})}"
+               th:text="*{naam}">
+                <ul th:each="ingredient:*{ingredienten}">
+                    <li th:text="${ingredient}"></li>
+                </ul>
+            </a>
         </li>
     </ul>
 </body>

@@ -3,6 +3,7 @@ package be.vdab.frida.controllers;
 import be.vdab.frida.domain.Saus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,4 +30,12 @@ class SauzenController {
         return lijstVanSauzen;
     }
 
+    @GetMapping("{nummer}")
+    ModelAndView saus(@PathVariable long nummer) {
+        var deSaus = getLijstVanSauzen().stream()
+                .filter(saus -> saus.getNummer() == nummer)
+                .findFirst()
+                .orElse(new Saus(404L, "saus not found"));
+        return new ModelAndView("saus", "saus", deSaus);
+    }
 }
