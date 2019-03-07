@@ -4,6 +4,7 @@
 <body>
     <h1>Frituur Frida</h1>
     <nav th:replace="fragments::menu"></nav>
+    <p>Welkom<span th:if="${terugkerendBezoeker}"> terug</span>!</p>
     <p th:text="|Vandaag zijn wij ${openOfGesloten}!|"></p>
     <h2>Adres</h2>
     <p th:object="${adres}"
