@@ -2,14 +2,14 @@
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Frituur Frida</title>
-    <link rel="icon" href="images/frida.ico" type="image/x-icon">
-    <link rel="stylesheet" href="css/stijl.css">
+    <link rel="icon" th:href="@{images/frida.ico}" type="image/x-icon">
+    <link rel="stylesheet" th:href="@{css/stijl.css}">
 </head>
 <body>
     <h1>Frituur Frida</h1>
 
     <p th:text="|Vandaag zijn wij ${openOfGesloten}!|"></p>
-    <img src="images/${openOfGesloten}.png" alt="${openOfGesloten}" class="fullwidth">
+    <img th:src="@{images/${openOfGesloten}.png}" alt="openOfGesloten" class="fullwidth">
 
     <h2>Adres</h2>
     <p th:object="${adres}"
