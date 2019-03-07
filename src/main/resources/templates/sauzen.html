@@ -1,12 +1,10 @@
 <!doctype html>
 <html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Frituur Frida - Sauzen</title>
-    <link rel="icon" th:href="@{images/frida.ico}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{css/stijl.css}">
-</head>
+<head th:replace="fragments::head(title='Sauzen')"></head>
 <body>
     <h1>Frituur Frida</h1>
+    <nav th:replace="fragments::menu"></nav>
+
     <h2>Sauzen</h2>
     <ul th:each="saus:${lijstVanSauzen}" th:object="${saus}">
         <li>

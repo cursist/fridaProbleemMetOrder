@@ -1,12 +1,9 @@
 <!doctype html>
-<html lang="nl" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Frituur Frida</title>
-    <link rel="icon" th:href="@{images/frida.ico}" type="image/x-icon">
-    <link rel="stylesheet" th:href="@{css/stijl.css}">
-</head>
+<html lang="nl" xmlns:th="www.thymeleaf.org">
+<head th:replace="fragments::head(title='Frituur Frida')"></head>
 <body>
     <h1>Frituur Frida</h1>
+    <nav th:replace="fragments::menu"></nav>
 
     <p th:text="|Vandaag zijn wij ${openOfGesloten}!|"></p>
     <img th:src="@{images/${openOfGesloten}.png}" alt="openOfGesloten" class="fullwidth">
