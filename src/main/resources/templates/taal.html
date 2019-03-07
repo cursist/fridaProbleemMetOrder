@@ -1,0 +1,11 @@
+<!doctype html>
+<html lang="nl" xmlns:th="www.thymeleaf.org">
+<head th:replace="fragments::head(title='Taal')"></head>
+<body>
+    <h1>Taal</h1>
+    <nav th:replace="fragments::menu"></nav>
+    <p>Je spreekt
+        <span th:text="${isNederlands} ? 'Nederlands' : 'buitenlands'"></span>
+    </p>
+</body>
+</html>
