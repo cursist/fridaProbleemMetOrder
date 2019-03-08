@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/sauzen")
 class SauzenController {
     @GetMapping
-    ModelAndView getHtmlPagina() {
+    ModelAndView sauzen() {
         var modelAndView = new ModelAndView("sauzen");
         modelAndView.addObject("lijstVanSauzen", getLijstVanSauzen());
         return modelAndView;
