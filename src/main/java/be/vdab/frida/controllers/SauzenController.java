@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/sauzen")
@@ -37,5 +37,14 @@ class SauzenController {
                 .findFirst()
                 .orElse(new Saus(404L, "saus not found"));
         return new ModelAndView("saus", "saus", deSaus);
+    }
+
+    @GetMapping("alfabet/{letter}")
+    ModelAndView sauzenPaginaMetAlfabet(@PathVariable String letter) {
+        var gefilterdeLijst =
+                getLijstVanSauzen().stream()
+                                   .filter(saus -> saus.getNaam().startsWith(letter))
+                                   .collect(Collectors.toList());
+        return new ModelAndView("alfabet", "lijstVanSauzen", gefilterdeLijst);
     }
 }
