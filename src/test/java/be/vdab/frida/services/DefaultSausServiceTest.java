@@ -2,6 +2,7 @@ package be.vdab.frida.services;
 
 import be.vdab.frida.domain.Saus;
 import be.vdab.frida.repositories.CSVSausRepository;
+import be.vdab.frida.repositories.SausRepository;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class DefaultSausServiceTest {
 
     @Before
     public void before() {
-        service = new DefaultSausService(new CSVSausRepository());
+        service = new DefaultSausService(new SausRepository[] {new CSVSausRepository()});
     }
 
     @Test

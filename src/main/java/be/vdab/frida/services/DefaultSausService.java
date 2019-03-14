@@ -1,6 +1,7 @@
 package be.vdab.frida.services;
 
 import be.vdab.frida.domain.Saus;
+import be.vdab.frida.exceptions.RepositoryException;
 import be.vdab.frida.repositories.SausRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,15 +11,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class DefaultSausService implements SausService {
-    private final SausRepository repository;
+    private final SausRepository[] repositories;
 
-    public DefaultSausService(SausRepository repository) {
-        this.repository = repository;
+    public DefaultSausService(SausRepository[] repository) {
+        this.repositories = repository;
     }
 
     @Override
     public List<Saus> findAll() {
-        return repository.findAll();
+        for (var repository : repositories) {
+            return repository.findAll();
+        }
+        throw new RepositoryException("kan geen repository lezen");
     }
 
     @Override
