@@ -1,6 +1,7 @@
 package be.vdab.frida.controllers;
 
 import be.vdab.frida.domain.Saus;
+import be.vdab.frida.services.SausService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,38 +14,30 @@ import java.util.stream.Collectors;
 @Controller
 @RequestMapping("/sauzen")
 class SauzenController {
+    private final SausService service;
+
+    SauzenController(SausService service) {
+        this.service = service;
+    }
+
     @GetMapping
     ModelAndView sauzen() {
         var modelAndView = new ModelAndView("sauzen");
-        modelAndView.addObject("lijstVanSauzen", getLijstVanSauzen());
+        modelAndView.addObject("lijstVanSauzen", service.findAll());
         return modelAndView;
-    }
-
-    private List<Saus> getLijstVanSauzen() {
-        var lijstVanSauzen = List.of(
-                new Saus(1L, "cocktail", "hanestaart"),
-                new Saus(2L, "mayonaise", "ei", "boter"),
-                new Saus(3L, "mosterd"),
-                new Saus(4L, "tartare"),
-                new Saus(5L, "vinaigrette"));
-        return lijstVanSauzen;
     }
 
     @GetMapping("{nummer}")
     ModelAndView saus(@PathVariable long nummer) {
-        var deSaus = getLijstVanSauzen().stream()
-                .filter(saus -> saus.getNummer() == nummer)
-                .findFirst()
+        var deSaus = service.findById(nummer)
                 .orElse(new Saus(404L, "saus not found"));
         return new ModelAndView("saus", "saus", deSaus);
     }
 
     @GetMapping("alfabet/{letter}")
-    ModelAndView sauzenPaginaMetAlfabet(@PathVariable String letter) {
-        var gefilterdeLijst =
-                getLijstVanSauzen().stream()
-                                   .filter(saus -> saus.getNaam().startsWith(letter))
-                                   .collect(Collectors.toList());
-        return new ModelAndView("alfabet", "lijstVanSauzen", gefilterdeLijst);
+    ModelAndView sauzenPaginaMetAlfabet(@PathVariable char letter) {
+        var gefilterdeLijst = service.findByNaamBegintMet(letter);
+        return new ModelAndView("alfabet",
+                "lijstVanSauzen", gefilterdeLijst);
     }
 }
