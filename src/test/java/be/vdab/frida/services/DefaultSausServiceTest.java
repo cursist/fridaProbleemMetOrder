@@ -2,21 +2,33 @@ package be.vdab.frida.services;
 
 import be.vdab.frida.domain.Saus;
 import be.vdab.frida.repositories.CSVSausRepository;
+import be.vdab.frida.repositories.PropertiesSausRepository;
 import be.vdab.frida.repositories.SausRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.stereotype.Repository;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
+@RunWith(SpringRunner.class)
+@Import(CSVSausRepository.class)
+@PropertySource("application.properties")
 public class DefaultSausServiceTest {
     private SausService service;
+    @Autowired
+    private SausRepository repository;
 
     @Before
     public void before() {
-        service = new DefaultSausService(new SausRepository[] {new CSVSausRepository()});
+        service = new DefaultSausService(new SausRepository[] {repository});
     }
 
     @Test

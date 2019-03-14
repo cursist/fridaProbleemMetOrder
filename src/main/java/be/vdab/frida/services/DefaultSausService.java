@@ -3,6 +3,8 @@ package be.vdab.frida.services;
 import be.vdab.frida.domain.Saus;
 import be.vdab.frida.exceptions.RepositoryException;
 import be.vdab.frida.repositories.SausRepository;
+import be.vdab.frida.repositories.TekstBestandSausRepository;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,17 +22,22 @@ public class DefaultSausService implements SausService {
     @Override
     public List<Saus> findAll() {
         for (var repository : repositories) {
-            return repository.findAll();
+            try {
+                return repository.findAll();
+            } catch (RepositoryException ex) {
+                LoggerFactory
+                        .getLogger(this.getClass())
+                        .error("fout bij het lezen: " + repository.getClass());
+            }
         }
         throw new RepositoryException("kan geen repository lezen");
     }
 
     @Override
     public List<Saus> findByNaamBegintMet(char letter) {
-        String eersteLetter = String.valueOf(letter);
         return this.findAll()
                 .stream()
-                .filter(saus -> saus.getNaam().startsWith(eersteLetter))
+                .filter(saus -> saus.getNaam().charAt(0) == letter)
                 .collect(Collectors.toList());
     }
 
