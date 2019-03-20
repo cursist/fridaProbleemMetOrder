@@ -4,37 +4,7 @@
 <body>
     <h1>Frituur Frida</h1>
     <nav th:replace="fragments::menu"></nav>
-    <nav>
-        <ul>
-            <li><a th:href="@{a}" th:text="a"></a></li>
-            <li><a th:href="@{b}" th:text="b"></a></li>
-            <li><a th:href="@{c}" th:text="c"></a></li>
-            <li><a th:href="@{d}" th:text="d"></a></li>
-            <li><a th:href="@{e}" th:text="e"></a></li>
-            <li><a th:href="@{f}" th:text="f"></a></li>
-            <li><a th:href="@{g}" th:text="g"></a></li>
-            <li><a th:href="@{h}" th:text="h"></a></li>
-            <li><a th:href="@{i}" th:text="i"></a></li>
-            <li><a th:href="@{i}" th:text="i"></a></li>
-            <li><a th:href="@{j}" th:text="j"></a></li>
-            <li><a th:href="@{k}" th:text="k"></a></li>
-            <li><a th:href="@{l}" th:text="l"></a></li>
-            <li><a th:href="@{m}" th:text="m"></a></li>
-            <li><a th:href="@{n}" th:text="n"></a></li>
-            <li><a th:href="@{o}" th:text="o"></a></li>
-            <li><a th:href="@{p}" th:text="p"></a></li>
-            <li><a th:href="@{q}" th:text="q"></a></li>
-            <li><a th:href="@{r}" th:text="r"></a></li>
-            <li><a th:href="@{s}" th:text="s"></a></li>
-            <li><a th:href="@{t}" th:text="t"></a></li>
-            <li><a th:href="@{u}" th:text="u"></a></li>
-            <li><a th:href="@{v}" th:text="v"></a></li>
-            <li><a th:href="@{w}" th:text="w"></a></li>
-            <li><a th:href="@{x}" th:text="x"></a></li>
-            <li><a th:href="@{y}" th:text="y"></a></li>
-            <li><a th:href="@{z}" th:text="z"></a></li>
-        </ul>
-    </nav>
+    <nav th:replace="fragments::alfabet"></nav>
     <h2>Sauzen</h2>
     <p th:if="${lijstVanSauzen.isEmpty()}"
        th:text="|Geen sauzen die beginnen met ${letter}.|"></p>
