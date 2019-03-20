@@ -9,7 +9,7 @@
     <p th:if="${lijstVanSnacks.isEmpty()}"
        th:text="|Geen snacks die beginnen met ${letter}.|"></p>
     <ul th:each="snack:${lijstVanSnacks}" th:object="${snack}">
-        <li th:text="*{naam}"></li>
+        <li><a th:href="@{/snacks/{id}(id=*{id})}" th:text="*{naam}"></a></li>
     </ul>
 </body>
 </html>

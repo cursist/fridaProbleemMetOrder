@@ -7,7 +7,7 @@
     <form th:object="${snackForm}" method="get" th:action="@{/snacks/opnaam}">
         <label>
             Begin van de naam:
-            <input th:field="*{beginNaam}" autofocus>
+            <input th:field="*{beginNaam}" autofocus type="text" required minlength="1">
             <span th:errors="*{beginNaam}"></span>
         </label>
     </form>
@@ -16,8 +16,8 @@
     <p th:if="${lijstVanSnacks == null || lijstVanSnacks.isEmpty()}">Geen snacks die beginnen met deze string.</p>
     <ul th:if="${lijstVanSnacks} != null">
         <li th:each="snack:${lijstVanSnacks}"
-            th:object="${snack}"
-            th:text="|*{naam} &euro; *{prijs}|">
+            th:object="${snack}">
+            <a th:href="@{/snacks/{id}(id=*{id})}" th:text="|*{naam} &euro; *{prijs}|"></a>
         </li>
     </ul>
 </body>

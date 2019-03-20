@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Snack wijzigen')"></head>
+<body th:object="${snack}">
+    <nav th:replace="fragments::menu"></nav>
+    <h1 th:text="|Snack *{id} wijzigen|"></h1>
+    <form method="post" th:action="@{/snacks}">
+        <label>
+            Naam:
+            <span th:errors="*{naam}"></span>
+            <input th:field="*{naam}" autofocus required>
+        </label>
+        <label>
+            Prijs:
+            <span th:errors="*{prijs}"></span>
+            <input th:field="*{prijs}" type="number" required min="0">
+        </label>
+        <input type="hidden" name="id" th:value="*{id}"/>
+        <input type="submit" value="Opslaan">
+    </form>
+    <script>
+        document.querySelector("form").onsubmit = function (event) {
+            event.target.querySelector("input[type=submit]").disabled = true;
+        }
+    </script>
+</body>
+</html>

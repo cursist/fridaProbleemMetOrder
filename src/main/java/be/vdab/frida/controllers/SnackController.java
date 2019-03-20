@@ -1,6 +1,7 @@
 package be.vdab.frida.controllers;
 
 import be.vdab.frida.domain.Saus;
+import be.vdab.frida.domain.Snack;
 import be.vdab.frida.forms.SnackForm;
 import be.vdab.frida.services.SausService;
 import be.vdab.frida.services.SnackService;
@@ -8,10 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.math.BigDecimal;
 import java.util.Collections;
 
 @Controller
@@ -50,6 +54,23 @@ class SnackController {
             return modelAndView;
         } else {
             return modelAndView.addObject("lijstVanSnacks", service.findByBeginNaam(form.getBeginNaam()));
+        }
+    }
+
+    @GetMapping("{id}")
+    ModelAndView wijzigSnack(@PathVariable long id) {
+        return new ModelAndView("wijzigen")
+                .addObject(new Snack(id, null, BigDecimal.ZERO));
+    }
+
+    @PostMapping
+    String toevoegen(@Valid Snack snack, Errors errors, RedirectAttributes redirect) {
+        if (errors.hasErrors()) {
+            return "wijzigen";
+        } else {
+            service.update(snack);
+            redirect.addAttribute("gewijzigd", snack.getId());
+            return "redirect:/";
         }
     }
 }
