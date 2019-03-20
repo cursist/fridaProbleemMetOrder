@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.Collections;
 
 @Controller
@@ -43,7 +44,7 @@ class SnackController {
                 .addObject("lijstVanSnacks", Collections.emptyList());
     }
     @GetMapping("opnaam")
-    ModelAndView snacksOpNaam(SnackForm form, Errors errors) {
+    ModelAndView snacksOpNaam(@Valid SnackForm form, Errors errors) {
         var modelAndView = new ModelAndView("snackForm");
         if (errors.hasErrors()) {
             return modelAndView;

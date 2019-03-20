@@ -13,7 +13,7 @@
     </form>
 
     <h2>Snacks</h2>
-    <p th:if="${lijstVanSnacks.isEmpty()}">Geen snacks die beginnen deze string.</p>
+    <p th:if="${lijstVanSnacks == null || lijstVanSnacks.isEmpty()}">Geen snacks die beginnen met deze string.</p>
     <ul th:if="${lijstVanSnacks} != null">
         <li th:each="snack:${lijstVanSnacks}"
             th:object="${snack}"
