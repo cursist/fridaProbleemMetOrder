@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments::head(title='Raad de saus')"></head>
+<body>
+    <nav th:replace="fragments::menu"></nav>
+    <h1 th:if="${beurt} <= 10 && ${gewonnen} == false">Raad de saus</h1>
+    <h1 th:if="${beurt} > 10"">Game over</h1>
+    <h1 th:if="${gewonnen} == true">Gewonnen</h1>
+    <p>
+        Te raden saus:
+        <span th:text="${naam}">...</span>
+    </p>
+    <p th:if="${beurt} > 10 && ${gewonnen} == false" th:text="|De saus was ${sausNaam}|"></p>
+    <form th:if="${beurt} <= 10 && ${gewonnen} == false"
+          th:object="${form}" th:action="@{/raaddesaus/spel}"
+          method="get">
+        <label>
+            letter:
+            <input th:field="*{letter}" type="text" maxlength="1"
+                   required autofocus/>
+        </label>
+        <input type="submit" value="Raden" />
+    </form>
+    <button><a th:href="@{/raaddesaus/reset}">Nieuw spel</a></button>
+    <h2 th:if="${beurt} <= 10" th:text="|Beurt ${beurt}|"></h2>
+    <img th:if="${beurt} <= 10" th:src="@{/images/{beurt}.png(beurt=${beurt})}">
+</body>
+</html>

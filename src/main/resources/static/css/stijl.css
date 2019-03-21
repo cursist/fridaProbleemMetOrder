@@ -28,4 +28,13 @@ form label span {
   background-color: red;
 }
 
+button {
+  display: block;
+  color: black;
+}
+
+button a {
+  text-decoration: none;
+}
+
 /*# sourceMappingURL=stijl.css.map */
